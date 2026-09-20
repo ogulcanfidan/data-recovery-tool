@@ -19,9 +19,9 @@ import zlib
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from data_recover.carve import carve_candidates, scan_headers, scan_headers_fh
-from data_recover.filesystems import fat, ntfs
-from data_recover.utils import AlignedFile, open_source
+from data_recovery.carve import carve_candidates, scan_headers, scan_headers_fh
+from data_recovery.filesystems import fat, ntfs
+from data_recovery.utils import AlignedFile, open_source
 
 PASS = "\033[32mPASS\033[0m"
 FAIL = "\033[31mFAIL\033[0m"
@@ -896,7 +896,7 @@ def test_mbr_partition_detection():
         skip("MBR bölüm tespiti", "mkfs.vfat/mtools bulunamadı")
         return
 
-    from data_recover.detect import find_filesystem
+    from data_recovery.detect import find_filesystem
 
     with tempfile.TemporaryDirectory() as tmp:
         vol_img = os.path.join(tmp, "vol.img")

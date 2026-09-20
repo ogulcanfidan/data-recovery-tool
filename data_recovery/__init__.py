@@ -1,4 +1,4 @@
-"""data_recover: cross-platform terminal tool for recovering deleted/formatted
+"""data_recovery: cross-platform terminal tool for recovering deleted/formatted
 files from disks, USB drives, memory cards, and phones mounted as storage.
 """
 

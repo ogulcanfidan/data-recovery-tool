@@ -40,8 +40,8 @@ TRANSLATIONS: Dict[str, Dict[str, str]] = {
         "de": "Über", "ru": "О программе", "ar": "حول", "zh": "关于",
     },
     "about_app_name": {
-        "tr": "Data Recover", "en": "Data Recover", "es": "Data Recover", "fr": "Data Recover",
-        "de": "Data Recover", "ru": "Data Recover", "ar": "Data Recover", "zh": "Data Recover",
+        "tr": "Data Recovery", "en": "Data Recovery", "es": "Data Recovery", "fr": "Data Recovery",
+        "de": "Data Recovery", "ru": "Data Recovery", "ar": "Data Recovery", "zh": "Data Recovery",
     },
     "about_subtitle": {
         "tr": "Silinmiş / format atılmış dosya kurtarma · sürüm {version}",
@@ -475,7 +475,7 @@ TRANSLATIONS: Dict[str, Dict[str, str]] = {
 
 def _config_path() -> str:
     base = os.environ.get("APPDATA") or os.path.expanduser("~")
-    return os.path.join(base, "data-recover", "config.json")
+    return os.path.join(base, "data-recovery", "config.json")
 
 
 def load_language() -> str:

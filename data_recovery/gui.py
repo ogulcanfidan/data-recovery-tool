@@ -1,4 +1,4 @@
-"""Simple, dependency-free graphical interface for data-recover.
+"""Simple, dependency-free graphical interface for data-recovery.
 
 Built with Tkinter (ships with Python on Windows/Mac; on some Linux
 distros you may need `sudo apt install python3-tk`). Sits directly on
@@ -30,20 +30,20 @@ APP_BRAND = "FMJ Software"
 
 
 def _asset_path(name: str) -> str:
-    """Resolve a path under data_recover/assets/, working both when run
+    """Resolve a path under data_recovery/assets/, working both when run
     from source and when frozen into a PyInstaller --onefile exe (which
     unpacks bundled data files into a temp dir at sys._MEIPASS).
     """
     base = getattr(sys, "_MEIPASS", os.path.dirname(__file__))
     if hasattr(sys, "_MEIPASS"):
-        return os.path.join(base, "data_recover", "assets", name)
+        return os.path.join(base, "data_recovery", "assets", name)
     return os.path.join(base, "assets", name)
 
 
-class DataRecoverGUI:
+class DataRecoveryGUI:
     def __init__(self, root: tk.Tk):
         self.root = root
-        self.root.title("Data Recover")
+        self.root.title("Data Recovery")
         self.root.geometry("780x600")
         self.root.minsize(680, 500)
 
@@ -650,7 +650,7 @@ def main():
             style.theme_use("clam")
     except Exception:
         pass
-    app = DataRecoverGUI(root)
+    app = DataRecoveryGUI(root)
     root.mainloop()
 
 

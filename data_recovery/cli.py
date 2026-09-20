@@ -1,11 +1,11 @@
 """Command-line interface.
 
 Usage examples:
-    data-recover list-devices
-    data-recover list-volumes
-    data-recover undelete /dev/sdb1 -o ./recovered
-    data-recover carve /dev/sdb -o ./recovered --formats jpg,png,pdf
-    data-recover scan /dev/sdb -o ./recovered
+    data-recovery list-devices
+    data-recovery list-volumes
+    data-recovery undelete /dev/sdb1 -o ./recovered
+    data-recovery carve /dev/sdb -o ./recovered --formats jpg,png,pdf
+    data-recovery scan /dev/sdb -o ./recovered
 """
 
 import argparse
@@ -263,7 +263,7 @@ def cmd_scan(args):
 
 def build_parser():
     p = argparse.ArgumentParser(
-        prog="data-recover",
+        prog="data-recovery",
         description="Disk, USB, hafıza kartı ve (mount edilmiş) telefon depolamasından silinmiş/format atılmış dosyaları kurtarma aracı.",
     )
     p.add_argument("--version", action="version", version=__version__)
@@ -311,7 +311,7 @@ def main(argv=None):
         print("--- traceback sonu ---\n", file=sys.stderr)
         print(
             f"\nYetki hatası (ham hata: {e!r}): ham disk erişimi için yönetici/root yetkisi "
-            "gerekiyor.\nLinux/Mac: 'sudo data-recover ...' ile çalıştır.\n"
+            "gerekiyor.\nLinux/Mac: 'sudo data-recovery ...' ile çalıştır.\n"
             "Windows: terminali yönetici olarak aç.\n"
             "Eğer zaten yöneticiysen ve hata devam ediyorsa, bu antivirüs/güvenlik "
             "yazılımının ham disk taramasını engellemesinden kaynaklanıyor olabilir "

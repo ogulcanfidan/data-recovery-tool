@@ -1,4 +1,4 @@
-# data-recover
+# Data Recovery
 
 Terminalden çalışan, dış bağımlılığı olmayan (sadece Python), diskten /
 USB'den / hafıza kartından / (mount edilmiş) telefon depolamasından
@@ -10,15 +10,16 @@ kullanır, kurulum için internetten paket indirmeye gerek yoktur.
 ## Kurulum
 
 ```bash
-cd data-recover
+git clone https://github.com/ogulcanfidan/data-recovery-tool.git
+cd data-recovery-tool
 pip install -e .
 ```
 
-Kurulum sonrası `data-recover` komutu terminalde kullanılabilir hale
+Kurulum sonrası `data-recovery` komutu terminalde kullanılabilir hale
 gelir. Kurmadan da doğrudan çalıştırabilirsin:
 
 ```bash
-python3 -m data_recover.cli --help
+python3 -m data_recovery.cli --help
 ```
 
 ## Grafik arayüz (GUI)
@@ -28,9 +29,9 @@ grafik arayüz de var — çekirdek motor terminal aracıyla birebir aynı,
 sadece üstüne bir pencere eklendi:
 
 ```bash
-python3 -m data_recover.gui
+python3 -m data_recovery.gui
 # ya da kurulumdan sonra:
-data-recover-gui
+data-recovery-gui
 ```
 
 Kaynağı (disk/aygıt yolu ya da imaj dosyası) ve çıktı klasörünü seç,
@@ -70,10 +71,10 @@ gerek kalmaz.
 pip install pyinstaller
 ```
 
-**2) `data-recover` klasörünün içindeyken iki exe'yi inşa et:**
+**2) Proje klasörünün içindeyken iki exe'yi inşa et:**
 ```powershell
-pyinstaller --onefile --uac-admin --name data-recover build_cli.py
-pyinstaller --onefile --uac-admin --windowed --name data-recover-gui --icon "data_recover/assets/app_icon.ico" --add-data "data_recover/assets;data_recover/assets" build_gui.py
+pyinstaller --onefile --uac-admin --name data-recovery build_cli.py
+pyinstaller --onefile --uac-admin --windowed --name data-recovery-gui --icon "data_recovery/assets/app_icon.ico" --add-data "data_recovery/assets;data_recovery/assets" build_gui.py
 ```
 GUI'nin `--add-data` bayrağı pencerenin içindeki FMJ Software logosunu (marka görseli, Hakkında penceresinde ve üst başlıkta kullanılıyor) exe'nin içine gömüyor. `--icon` bayrağı ise ayrı bir şey: exe dosyasının kendi simgesini (görev çubuğunda/masaüstünde/Gezgin'de görünen) belirliyor; bunun için marka logosu değil, uygulamaya özel `app_icon.ico` kullanılıyor. CLI'da görsel kullanılmadığı için ikisine de gerek yok.
 
@@ -85,12 +86,12 @@ disk taraması yönetici yetkisi istediği için bu, her seferinde elle
 
 **3) Ortaya çıkan dosyalar:**
 ```
-dist\data-recover.exe
-dist\data-recover-gui.exe
+dist\data-recovery.exe
+dist\data-recovery-gui.exe
 ```
 Bu ikisini USB belleğine kopyala. Artık hangi Windows bilgisayara
 taksan, Python kurulu olmasa bile çift tıklayarak (GUI için) ya da
-terminalden `data-recover.exe scan ... -o ...` diyerek (CLI için)
+terminalden `data-recovery.exe scan ... -o ...` diyerek (CLI için)
 direkt çalıştırabilirsin.
 
 **Notlar:**
@@ -143,7 +144,7 @@ eşleşmesine değil, kendi iç yapılarından okunan gerçek boyuta göre
 kesiliyor. Tam liste:
 
 ```bash
-data-recover list-formats
+data-recovery list-formats
 ```
 
 ## Kullanım
@@ -151,30 +152,30 @@ data-recover list-formats
 **Önce hedefi bul:**
 
 ```bash
-data-recover list-devices     # ham diskleri listeler (yönetici/root ister)
-data-recover list-volumes     # bağlı bölümleri/klasörleri listeler
+data-recovery list-devices     # ham diskleri listeler (yönetici/root ister)
+data-recovery list-volumes     # bağlı bölümleri/klasörleri listeler
 ```
 
 **En kapsamlı tarama (önerilen — hem undelete hem carve):**
 
 ```bash
 # Linux/Mac (root gerekir)
-sudo data-recover scan /dev/sdb1 -o ./kurtarilanlar
+sudo data-recovery scan /dev/sdb1 -o ./kurtarilanlar
 
 # Windows (yönetici terminalde)
-data-recover scan \\.\PhysicalDrive1 -o C:\kurtarilanlar
+data-recovery scan \\.\PhysicalDrive1 -o C:\kurtarilanlar
 ```
 
 **Sadece dosya sistemi seviyesinde (hızlı, isimler korunur):**
 
 ```bash
-sudo data-recover undelete /dev/sdb1 -o ./kurtarilanlar
+sudo data-recovery undelete /dev/sdb1 -o ./kurtarilanlar
 ```
 
 **Sadece imza tabanlı (format atılmış diskler için):**
 
 ```bash
-sudo data-recover carve /dev/sdb -o ./kurtarilanlar --formats jpg,png,mp4
+sudo data-recovery carve /dev/sdb -o ./kurtarilanlar --formats jpg,png,mp4
 ```
 
 `--formats` verilmezse tüm desteklenen formatlar aranır.
@@ -206,7 +207,7 @@ aynen çalışır — `source` olarak imaj dosyasının yolunu ver.
     ```bash
     adb shell "su -c 'dd if=/dev/block/bootdevice/by-name/userdata of=/sdcard/userdata.img'"
     adb pull /sdcard/userdata.img
-    data-recover scan userdata.img -o ./kurtarilanlar
+    data-recovery scan userdata.img -o ./kurtarilanlar
     ```
   - **Root'suz Android veya iPhone'da** işletim sistemi ham disk
     erişimini kapattığı için (özellikle iPhone'da Apple hiç izin

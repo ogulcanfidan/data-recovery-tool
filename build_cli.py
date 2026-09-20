@@ -3,7 +3,7 @@ users -- see README's "Taşınabilir sürüm (tek .exe)" section for the
 build command that uses this file.
 """
 
-from data_recover.cli import main
+from data_recovery.cli import main
 
 if __name__ == "__main__":
     main()
